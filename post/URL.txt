@@ -1,0 +1,1 @@
+http://massimilianosciacco.com/spring-security-jwt-authentication

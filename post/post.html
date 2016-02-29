@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)http://massimilianosciacco.com/spring-security-jwt-authentication -->
+<html class="mdq-aware js" lang="en" dir="ltr" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:og="http://ogp.me/ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:sioct="http://rdfs.org/sioc/types#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#"><!--<![endif]--><head profile="http://www.w3.org/1999/xhtml/vocab"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta charset="utf-8">
+<link rel="shortcut icon" href="http://massimilianosciacco.com/sites/default/files/favicon.ico" type="image/vnd.microsoft.icon">
+<link rel="shortlink" href="http://massimilianosciacco.com/node/32">
+<link rel="canonical" href="http://massimilianosciacco.com/spring-security-jwt-authentication">
+<meta name="Generator" content="Drupal 7 (http://drupal.org)">
+  <title>Spring Security JWT Authentication | Massimiliano Sciacco</title>
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="cleartype" content="on">
+  <style>
+@import url("http://massimilianosciacco.com/modules/system/system.base.css?o34nhz");
+@import url("http://massimilianosciacco.com/modules/system/system.menus.css?o34nhz");
+@import url("http://massimilianosciacco.com/modules/system/system.messages.css?o34nhz");
+@import url("http://massimilianosciacco.com/modules/system/system.theme.css?o34nhz");
+</style>
+<style>
+@import url("http://massimilianosciacco.com/modules/comment/comment.css?o34nhz");
+@import url("http://massimilianosciacco.com/sites/all/modules/date/date_api/date.css?o34nhz");
+@import url("http://massimilianosciacco.com/sites/all/modules/date/date_popup/themes/datepicker.1.7.css?o34nhz");
+@import url("http://massimilianosciacco.com/modules/field/theme/field.css?o34nhz");
+@import url("http://massimilianosciacco.com/modules/node/node.css?o34nhz");
+@import url("http://massimilianosciacco.com/modules/search/search.css?o34nhz");
+@import url("http://massimilianosciacco.com/modules/user/user.css?o34nhz");
+@import url("http://massimilianosciacco.com/sites/all/modules/views/css/views.css?o34nhz");
+</style>
+<style>
+@import url("http://massimilianosciacco.com/sites/all/modules/ckeditor/ckeditor.css?o34nhz");
+@import url("http://massimilianosciacco.com/sites/all/modules/ctools/css/ctools.css?o34nhz");
+@import url("http://massimilianosciacco.com/sites/all/modules/tagclouds/tagclouds.css?o34nhz");
+@import url("http://massimilianosciacco.com/modules/filter/filter.css?o34nhz");
+@import url("http://massimilianosciacco.com/sites/default/files/honeypot/honeypot.css?o34nhz");
+</style>
+<style>body{background-color:}
+</style>
+<style>
+@import url("http://massimilianosciacco.com/sites/all/themes/fontfolio/styles/normalize.css?o34nhz");
+@import url("http://massimilianosciacco.com/sites/all/themes/fontfolio/styles/fontfolio.css?o34nhz");
+@import url("http://massimilianosciacco.com/sites/all/themes/fontfolio/styles/fontfolio-md-queries.css?o34nhz");
+</style>
+  <script src="./post_files/jquery.js"></script>
+<script src="./post_files/jquery.once.js"></script>
+<script src="./post_files/drupal.js"></script>
+<script src="./post_files/form.js"></script>
+<script src="./post_files/textarea.js"></script>
+<script src="./post_files/filter.js"></script>
+<script src="./post_files/fontfolio.js"></script>
+<script>jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"fontfolio","theme_token":"brrBPS8zV12iW4MTiwx3loIjU3TmJcGOZlI3OwiX_OU","js":{"misc\/jquery.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"misc\/form.js":1,"misc\/textarea.js":1,"modules\/filter\/filter.js":1,"sites\/all\/themes\/fontfolio\/js\/fontfolio.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"modules\/comment\/comment.css":1,"sites\/all\/modules\/date\/date_api\/date.css":1,"sites\/all\/modules\/date\/date_popup\/themes\/datepicker.1.7.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/ckeditor\/ckeditor.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/tagclouds\/tagclouds.css":1,"modules\/filter\/filter.css":1,"sites\/default\/files\/honeypot\/honeypot.css":1,"0":1,"sites\/all\/themes\/fontfolio\/styles\/normalize.css":1,"sites\/all\/themes\/fontfolio\/styles\/fontfolio.css":1,"sites\/all\/themes\/fontfolio\/styles\/fontfolio-md-queries.css":1}},"urlIsAjaxTrusted":{"\/spring-security-jwt-authentication":true,"\/comment\/reply\/32":true},"ckeditor":{"input_formats":{"filtered_html":{"customConfig":"\/sites\/all\/modules\/ckeditor\/ckeditor.config.js?","defaultLanguage":"en","toolbar":"[\r\n    [\u0027Source\u0027],\r\n    [\u0027Cut\u0027,\u0027Copy\u0027,\u0027Paste\u0027,\u0027PasteText\u0027,\u0027PasteFromWord\u0027,\u0027-\u0027,\u0027SpellChecker\u0027,\u0027Scayt\u0027],\r\n    [\u0027Undo\u0027,\u0027Redo\u0027,\u0027Find\u0027,\u0027Replace\u0027,\u0027-\u0027,\u0027SelectAll\u0027,\u0027RemoveFormat\u0027],\r\n    [\u0027IMCE\u0027,\u0027Flash\u0027,\u0027Table\u0027,\u0027HorizontalRule\u0027,\u0027Smiley\u0027,\u0027SpecialChar\u0027],\r\n    [\u0027Maximize\u0027,\u0027ShowBlocks\u0027],\r\n    \u0027\/\u0027,\r\n    [\u0027Format\u0027],\r\n    [\u0027Bold\u0027,\u0027Italic\u0027,\u0027Underline\u0027,\u0027Strike\u0027,\u0027-\u0027,\u0027Subscript\u0027,\u0027Superscript\u0027],\r\n    [\u0027NumberedList\u0027,\u0027BulletedList\u0027,\u0027-\u0027,\u0027Outdent\u0027,\u0027Indent\u0027,\u0027Blockquote\u0027],\r\n    [\u0027JustifyLeft\u0027,\u0027JustifyCenter\u0027,\u0027JustifyRight\u0027,\u0027JustifyBlock\u0027,\u0027-\u0027,\u0027BidiLtr\u0027,\u0027BidiRtl\u0027],\r\n    [\u0027Link\u0027,\u0027Unlink\u0027,\u0027Anchor\u0027]\r\n]","enterMode":1,"shiftEnterMode":2,"toolbarStartupExpanded":true,"width":"100%","skin":"moono","format_tags":"p;div;pre;address;h1;h2;h3;h4;h5;h6","show_toggle":"t","ss":"2","loadPlugins":{"drupalbreaks":{"name":"drupalbreaks","desc":"Plugin for inserting Drupal teaser and page breaks.","path":"\/sites\/all\/modules\/ckeditor\/plugins\/drupalbreaks\/","buttons":{"DrupalBreak":{"label":"DrupalBreak","icon":"images\/drupalbreak.png"}},"default":"t"},"imce":{"name":"imce","desc":"Plugin for inserting files from imce without image dialog","path":"\/sites\/all\/modules\/ckeditor\/plugins\/imce\/","buttons":{"IMCE":{"label":"IMCE","icon":"images\/icon.png"}},"default":"f"}},"entities":false,"entities_greek":false,"entities_latin":false,"scayt_autoStartup":false,"filebrowserBrowseUrl":"\/imce?app=ckeditor%7Csendto%40ckeditor_imceSendTo%7C","stylesCombo_stylesSet":"drupal:\/sites\/all\/modules\/ckeditor\/ckeditor.styles.js","contentsCss":["\/sites\/all\/modules\/ckeditor\/ckeditor.css?o","\/sites\/all\/modules\/ckeditor\/ckeditor\/ckeditor\/contents.css?o"]},"full_html":{"customConfig":"\/sites\/all\/modules\/ckeditor\/ckeditor.config.js?","defaultLanguage":"en","toolbar":"[\r\n    [\u0027Source\u0027],\r\n    [\u0027Cut\u0027,\u0027Copy\u0027,\u0027Paste\u0027,\u0027PasteText\u0027,\u0027PasteFromWord\u0027,\u0027-\u0027,\u0027SpellChecker\u0027,\u0027Scayt\u0027],\r\n    [\u0027Undo\u0027,\u0027Redo\u0027,\u0027Find\u0027,\u0027Replace\u0027,\u0027-\u0027,\u0027SelectAll\u0027,\u0027RemoveFormat\u0027],\r\n    [\u0027IMCE\u0027,\u0027Flash\u0027,\u0027Table\u0027,\u0027HorizontalRule\u0027,\u0027Smiley\u0027,\u0027SpecialChar\u0027,\u0027Iframe\u0027],\r\n    \u0027\/\u0027,\r\n    [\u0027Bold\u0027,\u0027Italic\u0027,\u0027Underline\u0027,\u0027Strike\u0027,\u0027-\u0027,\u0027Subscript\u0027,\u0027Superscript\u0027],\r\n    [\u0027NumberedList\u0027,\u0027BulletedList\u0027,\u0027-\u0027,\u0027Outdent\u0027,\u0027Indent\u0027,\u0027Blockquote\u0027,\u0027CreateDiv\u0027],\r\n    [\u0027JustifyLeft\u0027,\u0027JustifyCenter\u0027,\u0027JustifyRight\u0027,\u0027JustifyBlock\u0027,\u0027-\u0027,\u0027BidiLtr\u0027,\u0027BidiRtl\u0027],\r\n    [\u0027Link\u0027,\u0027Unlink\u0027,\u0027Anchor\u0027],\r\n    [\u0027DrupalBreak\u0027],\r\n    \u0027\/\u0027,\r\n    [\u0027Format\u0027,\u0027Font\u0027,\u0027FontSize\u0027],\r\n    [\u0027TextColor\u0027,\u0027BGColor\u0027],\r\n    [\u0027Maximize\u0027,\u0027ShowBlocks\u0027]\r\n]","enterMode":1,"shiftEnterMode":2,"toolbarStartupExpanded":true,"width":"100%","skin":"moono","format_tags":"p;div;pre;address;h1;h2;h3;h4;h5;h6","show_toggle":"t","ss":"2","loadPlugins":{"drupalbreaks":{"name":"drupalbreaks","desc":"Plugin for inserting Drupal teaser and page breaks.","path":"\/sites\/all\/modules\/ckeditor\/plugins\/drupalbreaks\/","buttons":{"DrupalBreak":{"label":"DrupalBreak","icon":"images\/drupalbreak.png"}},"default":"t"},"imce":{"name":"imce","desc":"Plugin for inserting files from imce without image dialog","path":"\/sites\/all\/modules\/ckeditor\/plugins\/imce\/","buttons":{"IMCE":{"label":"IMCE","icon":"images\/icon.png"}},"default":"f"}},"entities":false,"entities_greek":false,"entities_latin":false,"scayt_autoStartup":false,"filebrowserBrowseUrl":"\/imce?app=ckeditor%7Csendto%40ckeditor_imceSendTo%7C","stylesCombo_stylesSet":"drupal:\/sites\/all\/modules\/ckeditor\/ckeditor.styles.js","contentsCss":["\/sites\/all\/modules\/ckeditor\/ckeditor.css?o","\/sites\/all\/modules\/ckeditor\/ckeditor\/ckeditor\/contents.css?o"]}},"plugins":[],"textarea_default_format":{"edit-comment-body-und-0-value":"plain_text"}}});</script>
+
+    <!--[if lt IE 9]>
+    <script src="/sites/all/themes/fontfolio/js/html5.js"></script>
+    <![endif]-->
+</head>
+<body class="html not-front not-logged-in page-node page-node- page-node-32 node-type-article no-sidebars">
+  <div id="skip-link">
+    <a href="http://massimilianosciacco.com/spring-security-jwt-authentication#content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+    <div id="main_container"> 
+  <header id="header"><div class="section clearfix">
+          <a href="http://massimilianosciacco.com/" title="Home" rel="home" class="logo">
+        <img src="./post_files/logo.png" alt="Home">
+      </a>
+    
+          <div id="name-and-slogan">
+                              <div id="site-name"><strong>
+              <a href="http://massimilianosciacco.com/" title="Home" rel="home"><span>Massimiliano Sciacco</span></a>
+            </strong></div>
+                  
+                  <div id="site-slogan">personal website</div>
+              </div> <!-- /#name-and-slogan -->
+    
+    
+    </div></header> <!-- /.section, /#header -->
+  <div id="header_top">
+    <div class="header_top_border"></div>
+    <a class="home-icon toggle" href="http://massimilianosciacco.com/"><img src="./post_files/glyphicons_020_home.png"></a>
+      <div class="social">
+      <a href="https://www.facebook.com/max.neme" target="_blank"><img class="facebook" typeof="foaf:Image" src="./post_files/facebook-icon.png" alt="Massimiliano Sciacco&#39;s at facebook"></a><a href="https://twitter.com/MSciacco" target="_blank"><img class="twitter" typeof="foaf:Image" src="./post_files/twitter-icon.png" alt="Massimiliano Sciacco&#39;s at twitter"></a><a href="http://it.linkedin.com/in/massimilianosciacco/" target="_blank"><img class="linkedin" typeof="foaf:Image" src="./post_files/linkedin-icon.png" alt="Massimiliano Sciacco&#39;s at linkedin"></a><a href="https://www.flickr.com/photos/maxsciacco/" target="_blank"><img class="flickr" typeof="foaf:Image" src="./post_files/flickr-icon.png" alt="Massimiliano Sciacco&#39;s at flickr"></a>      <div class="clear"></div>
+    </div><!--//social-->
+              <a class="toggle-search toggle" href="http://massimilianosciacco.com/spring-security-jwt-authentication#header_top"><img src="./post_files/glyphicons_027_search.png"></a>
+      <div class="search">
+          <div class="region region-search">
+    <div id="block-search-form" class="block block-search">
+
+      
+  <div class="content">
+    <form action="http://massimilianosciacco.com/spring-security-jwt-authentication" method="post" id="search-block-form" accept-charset="UTF-8"><div><div class="container-inline">
+      <h2 class="element-invisible">Search form</h2>
+    <div class="form-item form-type-textfield form-item-search-block-form">
+  <label class="element-invisible" for="edit-search-block-form--2">Search </label>
+ <input title="Enter the terms you wish to search for." onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search&#39;;}" onfocus="if (this.value == &#39;Search&#39;) {this.value = &#39;&#39;;}" type="text" id="edit-search-block-form--2" name="search_block_form" value="Search" size="15" maxlength="128" class="form-text">
+</div>
+<div class="form-actions form-wrapper" id="edit-actions--2"><input class="search_icon form-submit" type="image" id="edit-submit--2" name="submit" src="./post_files/search-icon.png"></div><input type="hidden" name="form_build_id" value="form-k75n7wRBSAVeF1y2M_MNcMgsIUrKtoV9412BvqusiGM">
+<input type="hidden" name="form_id" value="search_block_form">
+</div>
+</div></form>  </div> <!-- /.content -->
+
+</div> <!-- /.block -->
+  </div>
+      </div>
+                  <a class="toggle-nav toggle" href="http://massimilianosciacco.com/spring-security-jwt-authentication#header_top"><img src="./post_files/icon_nav_toggle-black.gif"></a> 
+      <nav class="menu_cont">
+        <div class="social">
+          <a href="https://www.facebook.com/max.neme" target="_blank"><img class="facebook" typeof="foaf:Image" src="./post_files/facebook-icon.png" alt="Massimiliano Sciacco&#39;s at facebook"></a><a href="https://twitter.com/MSciacco" target="_blank"><img class="twitter" typeof="foaf:Image" src="./post_files/twitter-icon.png" alt="Massimiliano Sciacco&#39;s at twitter"></a><a href="http://it.linkedin.com/in/massimilianosciacco/" target="_blank"><img class="linkedin" typeof="foaf:Image" src="./post_files/linkedin-icon.png" alt="Massimiliano Sciacco&#39;s at linkedin"></a><a href="https://www.flickr.com/photos/maxsciacco/" target="_blank"><img class="flickr" typeof="foaf:Image" src="./post_files/flickr-icon.png" alt="Massimiliano Sciacco&#39;s at flickr"></a>        </div><!--//social-->
+        <h2 class="element-invisible">Menu</h2><ul id="menu" class="links inline clearfix menu"><li class="menu-221 first"><a href="http://massimilianosciacco.com/">Home</a></li>
+<li class="menu-326"><a href="http://massimilianosciacco.com/about">About</a></li>
+<li class="menu-350"><a href="http://massimilianosciacco.com/projects">Projects</a></li>
+<li class="menu-358"><a href="http://massimilianosciacco.com/blog">Blog</a></li>
+<li class="menu-357"><a href="http://massimilianosciacco.com/contact" title="">Contact</a></li>
+<li class="menu-406 last"><a href="http://www.massimilianosciacco.com/ext/personal-flash/max-sck.html" title="">Flash version</a></li>
+</ul>              </nav><!--//menu_cont-->
+        <div class="clear"></div>
+  </div> <!-- /#header_top --> 
+    
+      <div id="content" class="column">
+        <div class="section">
+        <a id="main-content"></a>
+        <div class="tabs"></div>                                  <div id="single_left">
+                        <h1 class="title" id="page-title">Spring Security JWT Authentication</h1>                  <div class="region region-content">
+    <div id="block-system-main" class="block block-system">
+
+      
+  <div class="content">
+    <article id="node-32" class="node node-article node-full clearfix" about="/spring-security-jwt-authentication" typeof="sioc:Item foaf:Document">
+  
+  
+  <div class="content">
+          <div class="submitted">
+        Submitted on Fri, 04/24/2015 - 21:37      </div>
+        <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>So you've heard about this fabulous JWT and want to implement it into your Spring application? Good, let's see how can be done.</p>
+<p>If instead you're wondering what this fancy term refers to, check this article from Jesus Rodriguez <a href="http://angular-tips.com/blog/2014/05/json-web-tokens-introduction/">Json Web Tokens: Introduction</a> or a more&nbsp;in-depth documentation on the&nbsp;<a href="http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html">JSON Web Token</a>.</p>
+<p>Just to be sure you fully understand how it work, let's summarize it. JWT is a self contained token (literally a string) composed of three blocks: one containing the information of the applicant (the user itself usually) in a JSON format, one containing a signature computed by the server on the content of the JWT and one containing the information on how the signature was computed (the algorithm and encryption method for example). Given that, it's clear that the token must be generated by the server, because it's the only one that knows the secret used to compute the signature. This means that the server must first authenticate the client with another mechanism (for example a basic authentication over secure channel), then generate and send the json web token to the client. <u>I cannot stress it enough: the JWT is not meant to authenticate an user with standard methods (like username and password), but a mechanism to ensure an identity once this has been validated by another mechanism</u>.</p>
+<p>What is good for then? For example the fact that the token is JSON based, made it extremely shareable with different applications. Moreover the token is self-contained, so the client just need to resend to the server for each request, and the server just have to check the signature to ensure its validity. No more useless call to database or LDAP.</p>
+<p>For more information about it, read this great article from Chris Sevilleja <a href="https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication">The Ins and Outs of Token Based Authentication</a>.</p>
+<h2>Libraries</h2>
+<p>So let's start with some libraries. There are a lot of them out there, but I choose the&nbsp;one from <a href="http://connect2id.com/products/nimbus-jose-jwt">Nimbus</a> for its completeness. Their site is full of examples to brutally copy-paste into our project.</p>
+<p>Here the maven dependency</p>
+<pre>&lt;dependency&gt;
+    &lt;groupId&gt;com.nimbusds&lt;/groupId&gt;
+    &lt;artifactId&gt;nimbus-jose-jwt&lt;/artifactId&gt;
+    &lt;version&gt;3.8&lt;/version&gt;
+&lt;/dependency&gt;</pre><p>&nbsp;</p>
+<p>For my project the last version was the 3.8. Other than that we don't need anything in particular (except for Spring Security libraries of course).</p>
+<h2>Filter</h2>
+<p>We must create a filter to intercept all requests, extract the token and send it to the authentication manager to validate it. As a good practice, the JWT should be stored in an Authorization header usually prefixed with the <em>Bearer</em> or <em>JWT</em> scheme. For example:</p>
+<pre>Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ</pre><p>The name for the schema it's up to you, but for the header I strongly suggest to stick to the standard Authorization.</p>
+<p>Having established how we expect to receive our token, let's create a suitable filter to extract it:</p>
+<pre>public class JWTFilter extends GenericFilterBean {
+    
+    private AuthenticationEntryPoint entryPoint;
+    private AuthenticationManager authenticationManager;
+    
+    public JWTFilter(AuthenticationManager authenticationManager, AuthenticationEntryPoint entryPoint) {
+        this.authenticationManager = authenticationManager;
+        this.entryPoint = entryPoint;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws ServletException {
+        Assert.notNull(authenticationManager);
+    }
+    
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
+            ServletException {
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+        
+        try {
+            String stringToken = req.getHeader("Authorization");
+            if (stringToken == null) {
+                throw new InsufficientAuthenticationException("Authorization header not found");
+            }
+            
+            // remove schema from token
+            String authorizationSchema = "Bearer";
+            if (stringToken.indexOf(authorizationSchema) == -1) {
+                throw new InsufficientAuthenticationException("Authorization schema not found");
+            }
+            stringToken = stringToken.substring(authorizationSchema.length()).trim();
+            
+            try {
+                JWT jwt = JWTParser.parse(stringToken);
+                JWTToken token = new JWTToken(jwt);
+            
+                Authentication auth = authenticationManager.authenticate(token);
+                SecurityContextHolder.getContext().setAuthentication(auth);
+                chain.doFilter(request, response);
+            } catch (ParseException e) {
+                throw new InvalidTokenException("Invalid token");
+            }
+        } catch (AuthenticationException e) {
+            SecurityContextHolder.clearContext();
+            if (entryPoint != null) {
+                entryPoint.commence(req, res, e);
+            }
+        }    
+    }
+}</pre><p>and a token to hold the credentials used by the authentication manager throught the <em>Authentication</em> interface:</p>
+<pre>public class JWTToken implements Authentication {
+
+    private static final long serialVersionUID = 1L;
+
+    private JWT jwt;
+    private final Collection&lt;GrantedAuthority&gt; authorities;
+    private boolean authenticated;
+    private ReadOnlyJWTClaimsSet claims;
+    
+    public JWTToken(JWT jwt) throws ParseException {
+        this.jwt = jwt;
+        List&lt;String&gt; roles;
+        try {
+            roles = jwt.getJWTClaimsSet().getStringListClaim("roles");
+        } catch (ParseException e) {
+            roles = new ArrayList&lt;&gt;();
+        }
+        List&lt;GrantedAuthority&gt; tmp = new ArrayList&lt;&gt;();
+        if (roles != null) {
+            for (String role : roles) {
+                tmp.add(new SimpleGrantedAuthority(role));
+            }
+        }
+        this.authorities = Collections.unmodifiableList(tmp);
+        this.claims = jwt.getJWTClaimsSet();
+        authenticated = false;
+    }
+    
+    public JWT getJwt() {
+        return jwt;
+    }
+
+    public ReadOnlyJWTClaimsSet getClaims() {
+        return claims;
+    }
+
+    @Override
+    public Object getCredentials() {
+        return "";
+    }
+    
+    @Override
+    public Object getPrincipal() {
+        return claims.getSubject();
+    }
+
+    @Override
+    public String getName() {
+        return claims.getSubject();
+    }
+
+    @Override
+    public Collection&lt;? extends GrantedAuthority&gt; getAuthorities() {
+        return authorities;
+    }
+
+    @Override
+    public Object getDetails() {
+        return claims.toJSONObject();
+    }
+
+    @Override
+    public boolean isAuthenticated() {
+        return authenticated;
+    }
+
+    @Override
+    public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
+        this.authenticated = isAuthenticated;
+    }
+    
+}</pre><p>The filter is pretty straightforward:</p>
+<ol><li>We create it injecting the authentication manager and an implementation of entry point (optional). The entry point trigger a 401 response with&nbsp;the <em>WWW-Authenticate</em> header in case of authentication failure.</li>
+<li>The filter search for an Authorization header. If found, extract the token removing the schema from it. If the header or the schema is not present, an authentication exception is thrown.</li>
+<li>We pass the JWT token to the Nimbus JWT parser. If the parsing fails, it means that the token was malformed.</li>
+<li>If the parse is successfull, we create our JWT Authentication token used by the authentication manager. The token is simply an implementation of the Authentication interface with a parsing of the roles in the constructor. Notes that the "role" claim is not a standard one expected by the JWT specification, rather a custom one used by us to create the authorities that Spring needs to set roles. If you don't need the roles, you can simply return an empty list as authorities.&nbsp;Feel free to adapt this token as you wish. Remember that this token is what Spring will considered the authenticated user when searching for the "logged in" user in the security context holder.</li>
+<li>The previous token is then passed to the authentication manager to check its validity. If everything goes well, and no authentication exception is thrown, the object returned by the authentication manager is then inserted as an authenticated token into the security context holder and the request proceed towards the desidered controller.</li>
+</ol><p>Let's see how the provider verify the validity of the passed token.</p>
+<h2>Provider</h2>
+<p>The provider is really simple in fact, as it should only check that the signature matches the content, and the Nimbus library already did this for us. YAI! Here the code:</p>
+<pre>public class JWTAuthenticationProvider implements AuthenticationProvider {
+    
+    private JWSVerifier verifier;
+    
+    public JWTAuthenticationProvider() {
+        this.verifier = new MACVerifier("superSecretKey");
+    }
+
+    @Override
+    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+        JWTToken jwtToken = (JWTToken) authentication;
+        JWT jwt = jwtToken.getJwt();
+        
+        // Check type of the parsed JOSE object
+        if (jwt instanceof PlainJWT) {
+            handlePlainToken((PlainJWT) jwt);
+        } else if (jwt instanceof SignedJWT) {
+            handleSignedToken((SignedJWT) jwt);
+        } else if (jwt instanceof EncryptedJWT) {
+            handleEncryptedToken((EncryptedJWT) jwt);
+        }
+        
+        Date referenceTime = new Date();
+        ReadOnlyJWTClaimsSet claims = jwtToken.getClaims();
+        
+        Date expirationTime = claims.getExpirationTime();
+        if (expirationTime == null || expirationTime.before(referenceTime)) {
+            throw new TokenExpiredException("The token is expired");
+        }
+        
+        Date notBeforeTime = claims.getNotBeforeTime();
+        if (notBeforeTime == null || notBeforeTime.after(referenceTime)) {
+            throw new InvalidTokenException("Not before is after sysdate");
+        }
+        
+        String issuerReference = "my.site.com";
+        String issuer = claims.getIssuer();
+        if (!issuerReference.equals(issuer)) {
+            throw new InvalidTokenException("Invalid issuer");
+        }
+        
+        jwtToken.setAuthenticated(true);
+        return jwtToken;
+    }
+
+    @Override
+    public boolean supports(Class&lt;?&gt; authentication) {
+        return JWTToken.class.isAssignableFrom(authentication);
+    }
+    
+    private void handlePlainToken(PlainJWT jwt) {
+        throw new InvalidTokenException("Unsecured plain tokens are not supported");
+    }
+    
+    private void handleSignedToken(SignedJWT jwt) {
+        try {
+            if (!jwt.verify(verifier)) {
+                throw new InvalidSignatureException("Signature validation failed");
+            }
+        } catch (JOSEException e) {
+            throw new InvalidSignatureException("Signature validation failed");
+        }
+    }
+    
+    private void handleEncryptedToken(EncryptedJWT jwt) {
+        throw new UnsupportedOperationException("Unsupported token type");
+    }
+    
+}
+
+</pre><p>The provider too is very simple:</p>
+<ol><li>When it's created, we create also a MACVerifier (Nimbus library) used to check the validity of the signature. The verifier requires the secret key with wich the signature was calculated.</li>
+<li>Note&nbsp;the method <em>support()</em>. This is fundamental to allow the authentication manager to trigger this provider when a JWTToken object is passed as Authentication implementation.</li>
+<li>We extract the Nimbus JWT interface implementation from the token and check it's type with&nbsp;<em>instanceof</em>&nbsp;operators. In fact JWT can be plain, signed or encrypted. The first one is obviously discouraged. In the provided code only the signed JWT is implemented. The Nimbus site provides example of encrypted JWT validation.</li>
+<li>The signature validation is completely handled by the MACVerifier through the method <em>verify() </em>of the JWT interface itself.</li>
+<li>After having validated the signature we can check the claims like&nbsp;<em>expirationTime, notBeforeTime, issuer</em>, etc. Adapt this checks on your likings.</li>
+<li>If all checks pass, set the token to authenticated and return it. The filter will take it, set into the security context holder and forward the request to the controller.</li>
+</ol><p><u>NB: the exceptions are custom made. They are simple extension of the AuthenticationException defined by Spring. You can use whatever exception you like, even the Spring default ones.</u></p>
+<h2>Test</h2>
+<p>To test you can use the Spring Test framework that allow to mock filter behaviour:</p>
+<pre>public class JWTFilterTest {
+    
+    @Autowired
+    private JWTFilter filter;
+    
+    public MockHttpServletResponse doFilter(MockHttpServletRequest request) throws IOException, ServletException {
+        MockHttpServletResponse response = new MockHttpServletResponse();
+        MockFilterChain chain = new MockFilterChain();
+        filter.doFilter(request, response, chain);
+        return response;
+    }
+    
+    @Test
+    public void jwtFilterValidTest() throws IOException, ServletException {
+        MockHttpServletRequest request = new MockHttpServletRequest("GET", "http://somesecuredomain.com");
+        
+        Date now = new Date();
+        JWTClaimsSet claimsSet = new JWTClaimsSet();
+        claimsSet.setSubject("alice");
+        claimsSet.setIssueTime(now);
+        claimsSet.setIssuer("my.site.com");
+        claimsSet.setExpirationTime(new DateTime().plusHours(1).toDate());
+        claimsSet.setNotBeforeTime(now);
+        
+        String token = "Bearer " + this.signAndSerializeJWT(claimsSet, "superSecretKey");
+        request.addHeader("Authorization", token);
+        MockHttpServletResponse response = doFilter(request);
+        Assert.assertEquals(200, response.getStatus());
+    }
+    
+    private String signAndSerializeJWT(JWTClaimsSet claimsSet, String secret) {
+        JWSSigner signer = new MACSigner(secret);
+        SignedJWT signedJWT = new SignedJWT(new JWSHeader(JWSAlgorithm.HS512), claimsSet);
+        try {
+            signedJWT.sign(signer);
+            return signedJWT.serialize();
+        } catch(JOSEException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}
+</pre><p>I've use the JodaTime library to handle the date manipulation for the claim <em>notBeforeTime</em>.</p>
+</div></div></div><div class="field field-name-field-tags field-type-taxonomy-term-reference field-label-inline clearfix"><div class="field-label">Tags:&nbsp;</div><div class="field-items"><div class="field-item even" rel="dc:subject"><a href="http://massimilianosciacco.com/tags/spring" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Spring</a></div><div class="field-item odd" rel="dc:subject"><a href="http://massimilianosciacco.com/tags/security" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">Security</a></div><div class="field-item even" rel="dc:subject"><a href="http://massimilianosciacco.com/tags/jwt" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">JWT</a></div></div></div>  </div>
+      <footer>
+      <ul class="links inline"><li class="comment-add first last active"><a href="http://massimilianosciacco.com/spring-security-jwt-authentication#comment-form" title="Share your thoughts and opinions related to this posting." class="active">Add new comment</a></li>
+</ul>      <section id="comments" class="comment-wrapper">
+          <h2 class="title">Comments</h2>
+      
+  <a id="comment-1"></a>
+<article class="comment comment-by-anonymous clearfix" about="/comment/1#comment-1" typeof="sioc:Post sioct:Comment">
+
+  <header>
+    
+    
+        <h3 property="dc:title" datatype=""><a href="http://massimilianosciacco.com/comment/1#comment-1" class="permalink" rel="bookmark">JWTFilter constructor arguments</a></h3>
+    
+    <p class="submitted">
+      <a href="http://massimilianosciacco.com/comment/1#comment-1" class="permalink" rel="bookmark">Permalink</a>      Submitted by <span rel="sioc:has_creator"><span class="username" xml:lang="" typeof="sioc:UserAccount" property="foaf:name" datatype="">James (not verified)</span></span> on <span property="dc:date dc:created" content="2015-10-19T10:36:03+02:00" datatype="xsd:dateTime">Mon, 10/19/2015 - 10:36</span>.    </p>
+  </header>
+
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/spring-security-jwt-authentication" class="rdf-meta element-hidden"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Can you advise how to autowire the constructor arguments for the JWTFilter filter.</p>
+</div></div></div>      </div> <!-- /.content -->
+
+      <footer>
+      <ul class="links inline"><li class="comment-reply first last"><a href="http://massimilianosciacco.com/comment/reply/32/1">reply</a></li>
+</ul>    </footer>
+  
+</article> <!-- /.comment -->
+
+<div class="indented"><a id="comment-2"></a>
+<article class="comment comment-by-node-author clearfix" about="/comment/2#comment-2" typeof="sioc:Post sioct:Comment">
+
+  <header>
+    
+    
+        <h3 property="dc:title" datatype=""><a href="http://massimilianosciacco.com/comment/2#comment-2" class="permalink" rel="bookmark">Hi&nbsp;James,</a></h3>
+    
+    <p class="submitted">
+      <a href="http://massimilianosciacco.com/comment/2#comment-2" class="permalink" rel="bookmark">Permalink</a>      Submitted by <span rel="sioc:has_creator"><span class="username" xml:lang="" about="/users/max" typeof="sioc:UserAccount" property="foaf:name" datatype="">Max</span></span> on <span property="dc:date dc:created" content="2015-10-19T19:25:42+02:00" datatype="xsd:dateTime">Mon, 10/19/2015 - 19:25</span>.    </p>
+  </header>
+
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/spring-security-jwt-authentication" class="rdf-meta element-hidden"></span><span rel="sioc:reply_of" resource="/comment/1#comment-1" class="rdf-meta element-hidden"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Hi&nbsp;James,</p>
+<p>if your beans (the authentication entry point and authentication manager) are already defined as Spring bean (for example with the @Component annotation over their class name), you can simply inject them in the Filter with the @Autowired annotation over the constructor.</p>
+<p>Alternatively you can inject them with the xml configuration file. Something like this:</p>
+<pre>&lt;bean id="entryPoint" class="it.massimilianosciacco.security.DefaultEntryPoint"&gt;
+    &lt;property name="realmName" value="Secure realm" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="filter" class="it.massimilianosciacco.security.JWTFilter"&gt;
+    &lt;constructor-arg name="authenticationManager" ref="authenticationManager" /&gt;
+    &lt;constructor-arg name="entryPoint" ref="entryPoint" /&gt;
+&lt;/bean&gt;
+    
+&lt;bean id="provider" class="it.massimilianosciacco.security.JWTAuthenticationProvider" /&gt;
+
+&lt;sec:authentication-manager alias="authenticationManager"&gt;
+    &lt;sec:authentication-provider ref="provider" /&gt;
+&lt;/sec:authentication-manager&gt;</pre><p>
+You can check my other tutorial for an example:&nbsp;<a href="http://www.massimilianosciacco.com/implementing-hmac-authentication-rest-api-spring-security" target="_blank">http://www.massimilianosciacco.com/implementing-hmac-authentication-rest-api-spring-security</a></p>
+<p>&nbsp;</p>
+</div></div></div>      </div> <!-- /.content -->
+
+      <footer>
+      <ul class="links inline"><li class="comment-reply first last"><a href="http://massimilianosciacco.com/comment/reply/32/2">reply</a></li>
+</ul>    </footer>
+  
+</article> <!-- /.comment -->
+
+<div class="indented"><a id="comment-3"></a>
+<article class="comment comment-by-anonymous clearfix" about="/comment/3#comment-3" typeof="sioc:Post sioct:Comment">
+
+  <header>
+    
+    
+        <h3 property="dc:title" datatype=""><a href="http://massimilianosciacco.com/comment/3#comment-3" class="permalink" rel="bookmark">Thanks</a></h3>
+    
+    <p class="submitted">
+      <a href="http://massimilianosciacco.com/comment/3#comment-3" class="permalink" rel="bookmark">Permalink</a>      Submitted by <span rel="sioc:has_creator"><span class="username" xml:lang="" typeof="sioc:UserAccount" property="foaf:name" datatype="">James (not verified)</span></span> on <span property="dc:date dc:created" content="2015-10-20T13:04:54+02:00" datatype="xsd:dateTime">Tue, 10/20/2015 - 13:04</span>.    </p>
+  </header>
+
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/spring-security-jwt-authentication" class="rdf-meta element-hidden"></span><span rel="sioc:reply_of" resource="/comment/2#comment-2" class="rdf-meta element-hidden"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Hey, forgot to mention that your article helped a lot,  I have now a demo which work at <a href="https://github.com/tekbird/springjwt">https://github.com/tekbird/springjwt</a></p>
+</div></div></div>      </div> <!-- /.content -->
+
+      <footer>
+      <ul class="links inline"><li class="comment-reply first last"><a href="http://massimilianosciacco.com/comment/reply/32/3">reply</a></li>
+</ul>    </footer>
+  
+</article> <!-- /.comment -->
+
+<div class="indented"><a id="comment-4"></a>
+<article class="comment comment-by-node-author clearfix" about="/comment/4#comment-4" typeof="sioc:Post sioct:Comment">
+
+  <header>
+    
+    
+        <h3 property="dc:title" datatype=""><a href="http://massimilianosciacco.com/comment/4#comment-4" class="permalink" rel="bookmark">Nice work</a></h3>
+    
+    <p class="submitted">
+      <a href="http://massimilianosciacco.com/comment/4#comment-4" class="permalink" rel="bookmark">Permalink</a>      Submitted by <span rel="sioc:has_creator"><span class="username" xml:lang="" about="/users/max" typeof="sioc:UserAccount" property="foaf:name" datatype="">Max</span></span> on <span property="dc:date dc:created" content="2015-10-21T19:33:05+02:00" datatype="xsd:dateTime">Wed, 10/21/2015 - 19:33</span>.    </p>
+  </header>
+
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/spring-security-jwt-authentication" class="rdf-meta element-hidden"></span><span rel="sioc:reply_of" resource="/comment/3#comment-3" class="rdf-meta element-hidden"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Nice work! Glad it helps.</p>
+<p>Keep up the good work.</p>
+</div></div></div>      </div> <!-- /.content -->
+
+      <footer>
+      <ul class="links inline"><li class="comment-reply first last"><a href="http://massimilianosciacco.com/comment/reply/32/4">reply</a></li>
+</ul>    </footer>
+  
+</article> <!-- /.comment -->
+</div></div></div><a id="comment-5"></a>
+<article class="comment comment-by-anonymous clearfix" about="/comment/5#comment-5" typeof="sioc:Post sioct:Comment">
+
+  <header>
+    
+    
+        <h3 property="dc:title" datatype=""><a href="http://massimilianosciacco.com/comment/5#comment-5" class="permalink" rel="bookmark">Question about exceptions</a></h3>
+    
+    <p class="submitted">
+      <a href="http://massimilianosciacco.com/comment/5#comment-5" class="permalink" rel="bookmark">Permalink</a>      Submitted by <span rel="sioc:has_creator"><span class="username" xml:lang="" typeof="sioc:UserAccount" property="foaf:name" datatype="">Jacek (not verified)</span></span> on <span property="dc:date dc:created" content="2015-11-15T12:56:41+01:00" datatype="xsd:dateTime">Sun, 11/15/2015 - 12:56</span>.    </p>
+  </header>
+
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/spring-security-jwt-authentication" class="rdf-meta element-hidden"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Hello. Thank you for the article. Do TokenExpiredException, InvalidTokenException and InvalidSignatureException are your custom exception classes or are they from some kind of a library? I don't see such classes in Nimbus Jose + JWT.</p>
+</div></div></div>      </div> <!-- /.content -->
+
+      <footer>
+      <ul class="links inline"><li class="comment-reply first last"><a href="http://massimilianosciacco.com/comment/reply/32/5">reply</a></li>
+</ul>    </footer>
+  
+</article> <!-- /.comment -->
+
+<div class="indented"><a id="comment-7"></a>
+<article class="comment comment-by-node-author clearfix" about="/comment/7#comment-7" typeof="sioc:Post sioct:Comment">
+
+  <header>
+    
+    
+        <h3 property="dc:title" datatype=""><a href="http://massimilianosciacco.com/comment/7#comment-7" class="permalink" rel="bookmark">Hi. Yes, the exception are</a></h3>
+    
+    <p class="submitted">
+      <a href="http://massimilianosciacco.com/comment/7#comment-7" class="permalink" rel="bookmark">Permalink</a>      Submitted by <span rel="sioc:has_creator"><span class="username" xml:lang="" about="/users/max" typeof="sioc:UserAccount" property="foaf:name" datatype="">Max</span></span> on <span property="dc:date dc:created" content="2015-11-16T19:27:00+01:00" datatype="xsd:dateTime">Mon, 11/16/2015 - 19:27</span>.    </p>
+  </header>
+
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/spring-security-jwt-authentication" class="rdf-meta element-hidden"></span><span rel="sioc:reply_of" resource="/comment/5#comment-5" class="rdf-meta element-hidden"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Hi. Yes, the exceptions are custom created. You could use the Spring built-in or create your own exception. Maybe I'll specify better in the tutorial.</p>
+</div></div></div>      </div> <!-- /.content -->
+
+      <footer>
+      <ul class="links inline"><li class="comment-reply first last"><a href="http://massimilianosciacco.com/comment/reply/32/7">reply</a></li>
+</ul>    </footer>
+  
+</article> <!-- /.comment -->
+</div><a id="comment-6"></a>
+<article class="comment comment-by-anonymous clearfix" about="/comment/6#comment-6" typeof="sioc:Post sioct:Comment">
+
+  <header>
+    
+    
+        <h3 property="dc:title" datatype=""><a href="http://massimilianosciacco.com/comment/6#comment-6" class="permalink" rel="bookmark">Problem with  intercepting urls</a></h3>
+    
+    <p class="submitted">
+      <a href="http://massimilianosciacco.com/comment/6#comment-6" class="permalink" rel="bookmark">Permalink</a>      Submitted by <span rel="sioc:has_creator"><span class="username" xml:lang="" typeof="sioc:UserAccount" property="foaf:name" datatype="">Jacek (not verified)</span></span> on <span property="dc:date dc:created" content="2015-11-15T19:34:24+01:00" datatype="xsd:dateTime">Sun, 11/15/2015 - 19:34</span>.    </p>
+  </header>
+
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/spring-security-jwt-authentication" class="rdf-meta element-hidden"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Hello again. I have configured my app just like you but with one difference. I wanted to have an url which is accessible with no authentication. The problem is that even though I marked it as access=permitAll(), it is still processed by the filter and 401 is thrown. Can you check? BTW. these urls are mapped by Spring Controller. This is my http tag:</p>
+<p>&lt;security:http entry-point-ref="mobileJWTAuthenticationEntryPoint"<br>
+	               authentication-manager-ref="mobileJWTAuthenticationManager"<br>
+	    		   create-session="stateless"<br>
+	    		   use-expressions="true"&gt;<br>
+		&lt;security:custom-filter ref="mobileJWTAuthenticationFilter" position="FORM_LOGIN_FILTER" /&gt;<br>
+		&lt;security:intercept-url pattern="/services/public/mobileFBAuth" access="permitAll()"/&gt;<br>
+ 		&lt;security:intercept-url pattern="/services/restAPI/**" access="isAuthenticated()" /&gt;<br>
+	&lt;/security:http&gt;</p>
+</div></div></div>      </div> <!-- /.content -->
+
+      <footer>
+      <ul class="links inline"><li class="comment-reply first last"><a href="http://massimilianosciacco.com/comment/reply/32/6">reply</a></li>
+</ul>    </footer>
+  
+</article> <!-- /.comment -->
+
+<div class="indented"><a id="comment-8"></a>
+<article class="comment comment-by-node-author clearfix" about="/comment/8#comment-8" typeof="sioc:Post sioct:Comment">
+
+  <header>
+    
+    
+        <h3 property="dc:title" datatype=""><a href="http://massimilianosciacco.com/comment/8#comment-8" class="permalink" rel="bookmark">Try with another http section block</a></h3>
+    
+    <p class="submitted">
+      <a href="http://massimilianosciacco.com/comment/8#comment-8" class="permalink" rel="bookmark">Permalink</a>      Submitted by <span rel="sioc:has_creator"><span class="username" xml:lang="" about="/users/max" typeof="sioc:UserAccount" property="foaf:name" datatype="">Max</span></span> on <span property="dc:date dc:created" content="2015-11-16T19:39:35+01:00" datatype="xsd:dateTime">Mon, 11/16/2015 - 19:39</span>.    </p>
+  </header>
+
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/spring-security-jwt-authentication" class="rdf-meta element-hidden"></span><span rel="sioc:reply_of" resource="/comment/6#comment-6" class="rdf-meta element-hidden"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Have you tried to create another http block with security="none" before the secure one? Like this:</p>
+<pre>&lt;security:http pattern="/services/public/mobileFBAuth" security="none"/&gt;</pre></div></div></div>      </div> <!-- /.content -->
+
+      <footer>
+      <ul class="links inline"><li class="comment-reply first last"><a href="http://massimilianosciacco.com/comment/reply/32/8">reply</a></li>
+</ul>    </footer>
+  
+</article> <!-- /.comment -->
+
+<div class="indented"><a id="comment-9"></a>
+<article class="comment comment-by-anonymous clearfix" about="/comment/9#comment-9" typeof="sioc:Post sioct:Comment">
+
+  <header>
+    
+    
+        <h3 property="dc:title" datatype=""><a href="http://massimilianosciacco.com/comment/9#comment-9" class="permalink" rel="bookmark">Thank you for your attention,</a></h3>
+    
+    <p class="submitted">
+      <a href="http://massimilianosciacco.com/comment/9#comment-9" class="permalink" rel="bookmark">Permalink</a>      Submitted by <span rel="sioc:has_creator"><span class="username" xml:lang="" typeof="sioc:UserAccount" property="foaf:name" datatype="">Jacek (not verified)</span></span> on <span property="dc:date dc:created" content="2015-11-21T16:49:09+01:00" datatype="xsd:dateTime">Sat, 11/21/2015 - 16:49</span>.    </p>
+  </header>
+
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/spring-security-jwt-authentication" class="rdf-meta element-hidden"></span><span rel="sioc:reply_of" resource="/comment/8#comment-8" class="rdf-meta element-hidden"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Thank you for your attention, Actually it's not the case. I've solved it myself - to permit all requests the authentication filter has to be modified - instead of lines in which you throw an exception there have to be these lines:</p>
+<p>chain.doFilter(request, response);<br>
+return;</p>
+</div></div></div>      </div> <!-- /.content -->
+
+      <footer>
+      <ul class="links inline"><li class="comment-reply first last"><a href="http://massimilianosciacco.com/comment/reply/32/9">reply</a></li>
+</ul>    </footer>
+  
+</article> <!-- /.comment -->
+
+<div class="indented"><a id="comment-11"></a>
+<article class="comment comment-by-node-author clearfix" about="/comment/11#comment-11" typeof="sioc:Post sioct:Comment">
+
+  <header>
+    
+    
+        <h3 property="dc:title" datatype=""><a href="http://massimilianosciacco.com/comment/11#comment-11" class="permalink" rel="bookmark">A public endpoint should never hit the JWT filter</a></h3>
+    
+    <p class="submitted">
+      <a href="http://massimilianosciacco.com/comment/11#comment-11" class="permalink" rel="bookmark">Permalink</a>      Submitted by <span rel="sioc:has_creator"><span class="username" xml:lang="" about="/users/max" typeof="sioc:UserAccount" property="foaf:name" datatype="">Max</span></span> on <span property="dc:date dc:created" content="2015-11-22T18:02:16+01:00" datatype="xsd:dateTime">Sun, 11/22/2015 - 18:02</span>.    </p>
+  </header>
+
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/spring-security-jwt-authentication" class="rdf-meta element-hidden"></span><span rel="sioc:reply_of" resource="/comment/9#comment-9" class="rdf-meta element-hidden"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>That's strange, because the "public" endpoint should never hit the filter in the first place. Well, if it works for you, is good enough :)</p>
+</div></div></div>      </div> <!-- /.content -->
+
+      <footer>
+      <ul class="links inline"><li class="comment-reply first last"><a href="http://massimilianosciacco.com/comment/reply/32/11">reply</a></li>
+</ul>    </footer>
+  
+</article> <!-- /.comment -->
+</div></div></div><a id="comment-14"></a>
+<article class="comment comment-by-anonymous clearfix" about="/comment/14#comment-14" typeof="sioc:Post sioct:Comment">
+
+  <header>
+    
+    
+        <h3 property="dc:title" datatype=""><a href="http://massimilianosciacco.com/comment/14#comment-14" class="permalink" rel="bookmark">Source code</a></h3>
+    
+    <p class="submitted">
+      <a href="http://massimilianosciacco.com/comment/14#comment-14" class="permalink" rel="bookmark">Permalink</a>      Submitted by <span rel="sioc:has_creator"><span class="username" xml:lang="" typeof="sioc:UserAccount" property="foaf:name" datatype="">Alex (not verified)</span></span> on <span property="dc:date dc:created" content="2016-01-05T12:13:30+01:00" datatype="xsd:dateTime">Tue, 01/05/2016 - 12:13</span>.    </p>
+  </header>
+
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/spring-security-jwt-authentication" class="rdf-meta element-hidden"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Hello. Thank you for this awesome guide! Could you please also post a working code(project) on GitHub ?</p>
+</div></div></div>      </div> <!-- /.content -->
+
+      <footer>
+      <ul class="links inline"><li class="comment-reply first last"><a href="http://massimilianosciacco.com/comment/reply/32/14">reply</a></li>
+</ul>    </footer>
+  
+</article> <!-- /.comment -->
+<a id="comment-16"></a>
+<article class="comment comment-by-anonymous clearfix" about="/comment/16#comment-16" typeof="sioc:Post sioct:Comment">
+
+  <header>
+    
+    
+        <h3 property="dc:title" datatype=""><a href="http://massimilianosciacco.com/comment/16#comment-16" class="permalink" rel="bookmark">Great!</a></h3>
+    
+    <p class="submitted">
+      <a href="http://massimilianosciacco.com/comment/16#comment-16" class="permalink" rel="bookmark">Permalink</a>      Submitted by <span rel="sioc:has_creator"><span class="username" xml:lang="" typeof="sioc:UserAccount" property="foaf:name" datatype="">Luis (not verified)</span></span> on <span property="dc:date dc:created" content="2016-02-27T12:38:11+01:00" datatype="xsd:dateTime">Sat, 02/27/2016 - 12:38</span>.    </p>
+  </header>
+
+  <div class="content">
+    <span rel="sioc:reply_of" resource="/spring-security-jwt-authentication" class="rdf-meta element-hidden"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Well done,thank you for the clear explanation and congratulations for the article!</p>
+</div></div></div>      </div> <!-- /.content -->
+
+      <footer>
+      <ul class="links inline"><li class="comment-reply first last"><a href="http://massimilianosciacco.com/comment/reply/32/16">reply</a></li>
+</ul>    </footer>
+  
+</article> <!-- /.comment -->
+
+      <section id="comment-form-wrapper">
+      <h2 class="title">Add new comment</h2>
+      <form class="comment-form" action="http://massimilianosciacco.com/comment/reply/32" method="post" id="comment-form" accept-charset="UTF-8"><div><div class="form-item form-type-textfield form-item-name">
+  <label for="edit-name">Your name </label>
+ <input type="text" id="edit-name" name="name" value="" size="30" maxlength="60" class="form-text">
+</div>
+<div class="form-item form-type-textfield form-item-subject">
+  <label for="edit-subject">Subject </label>
+ <input type="text" id="edit-subject" name="subject" value="" size="60" maxlength="64" class="form-text">
+</div>
+<div class="field-type-text-long field-name-comment-body field-widget-text-textarea form-wrapper" id="edit-comment-body"><div id="comment-body-add-more-wrapper"><div class="text-format-wrapper"><div class="form-item form-type-textarea form-item-comment-body-und-0-value">
+  <label for="edit-comment-body-und-0-value">Comment <span class="form-required" title="This field is required.">*</span></label>
+ <div class="form-textarea-wrapper resizable textarea-processed resizable-textarea"><textarea class="text-full form-textarea required" id="edit-comment-body-und-0-value" name="comment_body[und][0][value]" cols="60" rows="5"></textarea><div class="grippie"></div></div>
+</div>
+<fieldset class="filter-wrapper form-wrapper" id="edit-comment-body-und-0-format"><div class="fieldset-wrapper"><div class="filter-help form-wrapper" id="edit-comment-body-und-0-format-help"><p><a href="http://massimilianosciacco.com/filter/tips" target="_blank">More information about text formats</a></p></div><div class="filter-guidelines form-wrapper filter-guidelines-processed" id="edit-comment-body-und-0-format-guidelines"><div class="filter-guidelines-item filter-guidelines-plain_text"><h3 style="display: none;">Plain text</h3><ul class="tips"><li>No HTML tags allowed.</li><li>Web page addresses and e-mail addresses turn into links automatically.</li><li>Lines and paragraphs break automatically.</li></ul></div></div></div></fieldset>
+</div>
+</div></div><input type="hidden" name="form_build_id" value="form-Fqx7ofvy2U4_3gXMIUGkAtp9lCklXSfXuNaO10gvvYE">
+<input type="hidden" name="form_id" value="comment_node_article_form">
+<input type="hidden" name="honeypot_time" value="1456732071|BD1sF59a6M270TbRZBz1h-bDtDpQt5hKowO4MNPDjEE">
+<div class="url-textfield"><div class="form-item form-type-textfield form-item-url">
+  <label for="edit-url">Leave this field blank </label>
+ <input autocomplete="off" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-text">
+</div>
+</div><div class="form-actions form-wrapper" id="edit-actions"><input type="submit" id="edit-submit" name="op" value="Save" class="form-submit"><input type="submit" id="edit-preview" name="op" value="Preview" class="form-submit"></div></div></form>    </section> <!-- /#comment-form -->
+  </section> <!-- /#comments -->
+    </footer>
+  
+</article>
+  </div> <!-- /.content -->
+
+</div> <!-- /.block -->
+  </div>
+                          </div><!-- /single_left -->
+                        </div>
+    </div> <!-- /.section, /#content -->
+    <footer id="footer">
+      <section class="section">
+          <div class="region region-footer">
+    <div id="block-block-1" class="block block-block">
+
+      
+  <div class="content">
+    <div class="copyright">Copyright 2013 - <u><a href="mailto:max.sciacco@gmail.com">Massimiliano Sciacco </a></u></div>
+<div class="design">Designed on <u><a href="http://fontfolio.ish.co.il/" target="_blank">FontFolio</a></u><a href="http://fontfolio.ish.co.il/" target="_blank"> </a>theme</div>
+  </div> <!-- /.content -->
+
+</div> <!-- /.block -->
+  </div>
+      </section>
+    </footer> <!-- /.section, /#footer -->
+
+  </div> <!-- /#main_container -->
+  
+
+<script src="chrome-extension://hhojmcideegachlhfgfdhailpfhgknjm/web_accessible_resources/index.js"></script><script type="text/javascript">
+document.oncontextmenu = null;
+document.onselectstart = null;
+document.onmousedown = null;
+document.onclick = null;
+document.oncopy = null;
+document.oncut = null;
+var elements = document.getElementsByTagName('*');
+for (var i = 0; i < elements.length; i++) {
+    elements[i].oncontextmenu = null;
+    elements[i].onselectstart = null;
+    elements[i].onmousedown = null;
+    elements[i].oncopy = null;
+    elements[i].oncut = null;
+}
+function preventShareThis() {
+    document.getSelection = window.getSelection = function() {
+        return {isCollapsed: true};
+    }
+}
+var scripts = document.getElementsByTagName('script');
+for (var i = 0; i < scripts.length; i++) {
+    if (scripts[i].src.indexOf('w.sharethis.com') > -1) {
+        preventShareThis();
+    }
+}
+if (typeof Tynt != 'undefined') {
+    Tynt = null;
+}</script><style>
+* {
+    -webkit-user-select: auto !important; /* injected by RightToCopy */
+}</style><div id="window-resizer-tooltip" style="display: none;"><a href="http://massimilianosciacco.com/spring-security-jwt-authentication#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1920</span> x <span class="tooltipHeight" id="winHeight">1050</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1920</span> x <span class="tooltipHeight" id="vpHeight">921</span></div></body></html>
